@@ -14,11 +14,11 @@ use App\Http\Controllers\OrderController;
 |
 */
 
-Route::get('/', function () {
+/*Route::get('/', function () {
     return view('welcome');
-});
+});*/
 
-Route::get('/task1', [OrderController::class, 'index']);
+Route::get('/', [OrderController::class, 'index']);
 Route::get('/task1/{id}', [OrderController::class, 'show']);
 Route::get('/task2', [OrderController::class, 'rank']);
 Route::get('/typeahead_autocomplete/action', [OrderController::class, 'autocomplete'])->name('typeahead_autocomplete.action');

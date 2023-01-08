@@ -1,12 +1,13 @@
 <?php
-namespace App\Services;
+namespace App\Http\Controllers\Utils;
 
 use Illuminate\Support\Facades\DB;
 
-class Computations
+class OrderComputation
 {
     public function distributorName($id)
-    {
+    {   
+        //Get distrubutor names 
         $name = DB::table('users')
         ->select('first_name', 'last_name')
         ->where('id','=',$id)
@@ -21,22 +22,24 @@ class Computations
     }
 
     public function referredDistributors($id)
-    {
-        $query = DB::select('SELECT COUNT(id) as referred_distributors FROM `users` WHERE referred_by = ?', [$id]);
-
+    { 
+        //Get referred distrubutors for each distrubutors
+        $query = DB::select('SELECT COUNT(id) as referred_distributors FROM `users` 
+                 WHERE referred_by = ?', [$id]);
         $number = $query[0]->referred_distributors;
         return $number;
     }
 
     public function orderTotal($order_id)
-    {
+    {   
+        //Get other totals
         $query = DB::select('SELECT SUM(order_items.qantity*products.price) as order_total FROM `order_items` INNER JOIN `products` ON order_items.product_id = products.id WHERE order_items.order_id = ?', [$order_id]);
         $number = $query[0]->order_total;
         return $number;
     }
     public function percentage($number)
     {
-
+        //Calculate percentage for distrubutors
         if ($number < 5) {
             return 5;
         }
@@ -55,12 +58,14 @@ class Computations
     }
 
     public function commission($percentage, $order_total)
-    {
+    {   
+        //Calculate commisions for distrubutors
         return ($percentage/100) * $order_total;
     }
 
     public function viewItems($order_id)
     {
+        //Fetch Products by each distrubutor
         $query = DB::select('SELECT p.sku, p.name, p.price, o.qantity FROM `order_items` as o INNER JOIN `products` as p ON o.product_id = p.id WHERE o.order_id = ?', [$order_id]);
         return $query;
     }

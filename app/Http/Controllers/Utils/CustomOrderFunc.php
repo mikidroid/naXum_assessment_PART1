@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Utils;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
 
-class OrderFunctions extends Controller
+class CustomOrderFunc extends Controller
 {
     public function allOrders($from, $to, $search)
     {

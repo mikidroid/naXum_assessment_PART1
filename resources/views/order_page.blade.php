@@ -14,7 +14,7 @@
             </div>
         </nav>
 
-        @inject('computations', 'App\Services\Computations')
+        @inject('computations', 'App\Http\Controllers\Utils\OrderComputation')
 
         <div class="overflow-auto">
         <table class="table mt-2">
@@ -50,9 +50,9 @@
                         <td>{{ $computations->commission($percentage, $order_total) }}</td>
                         <td>
                             <!-- Button trigger modal -->
-                            <button type="button" class="orderDetails btn btn-primary" data-bs-toggle="modal"
+                            <button type="button" class="orderDetails btn btn-link btn-primary" data-bs-toggle="modal"
                                 data-bs-target="#staticBackdrop" data-id="{{ $i->id }}">
-                                View Items {{ $i->id }}
+                                View Items
                             </button>
 
 
@@ -153,7 +153,7 @@
     <style>
     @media (min-width:576px){
      .contain{
-       padding: 20px 70px;
+       padding: 40px 70px;
      }
       
     }
