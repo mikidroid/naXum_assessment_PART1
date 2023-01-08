@@ -5,7 +5,7 @@
       <div class="contain">
         <nav class="navbar">
             <div class="container-fluid">
-                <form class="d-flex" role="search" method="GET" action="/task1">
+                <form class="d-flex" role="search" method="GET" action="/">
                     <input class="form-control me-2" type="text" placeholder="distributor" name="d_name" id="d_name">
                     <input type="date" name="from" class="form-control me-2">
                     <input type="date" name="to" class="form-control me-2">
