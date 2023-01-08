@@ -12,14 +12,14 @@ class CustomOrderFunc extends Controller
     {
         if ($from != null && $to != null && $search != null) {
 
-          $seye = DB::table('users')
+          $_user = DB::table('users')
           ->select('users.id')
           ->join('user_category', 'users.id', '=', 'user_category.user_id')
           ->where('user_category.category_id', '=', 1)
           ->where('users.first_name', 'LIKE', "%{$search}%")
           ->get();
 
-          $array = $seye->pluck('id')->toArray();
+          $array = $_user->pluck('id')->toArray();
 
           $allOrders = DB::table('orders')
             ->select('orders.id', 'orders.invoice_number', 'orders.purchaser_id', 'orders.order_date',
@@ -44,14 +44,14 @@ class CustomOrderFunc extends Controller
         }
         elseif ($search != null) {
 
-            $seye = DB::table('users')
+            $_user = DB::table('users')
           ->select('users.id')
           ->join('user_category','users.id','=','user_category.user_id')
           ->where('user_category.category_id','=',1)
           ->where('users.first_name','LIKE',"%{$search}%")
           ->get();
            
-            $array = $seye->pluck('id')->toArray();
+            $array = $_user->pluck('id')->toArray();
 
             $allOrders = DB::table('orders')
             ->select('orders.id', 'orders.invoice_number', 'orders.purchaser_id', 'orders.order_date', 'users.first_name', 'users.last_name', 'users.referred_by')
