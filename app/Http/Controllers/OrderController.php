@@ -8,6 +8,7 @@ use App\Http\Controllers\Utils\CustomOrderFunc;
 
 class OrderController extends CustomOrderFunc
 {
+    //Get all orders
     public function index(Request $request)
     {
         $from = $request->get('from');
